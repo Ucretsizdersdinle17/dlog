@@ -54,13 +54,13 @@ const (
 )
 
 var SeverityName = []string{
-	SeverityDebug:    "DEBUG",
-	SeverityInfo:     "INFO",
-	SeverityNotice:   "NOTICE",
-	SeverityWarning:  "WARNING",
-	SeverityError:    "ERROR",
-	SeverityCritical: "CRITICAL",
-	SeverityFatal:    "FATAL",
+	SeverityDebug:    "Bilgi",
+	SeverityInfo:     "Bilgi",
+	SeverityNotice:   "Bilgi",
+	SeverityWarning:  "Uyarı",
+	SeverityError:    "Hata",
+	SeverityCritical: "Hata",
+	SeverityFatal:    "Hata",
 }
 
 func Debugf(format string, args ...interface{}) {
@@ -238,7 +238,7 @@ func logf(severity Severity, format string, args ...interface{}) {
 	if _globals.systemLogger != nil {
 		(*_globals.systemLogger).writeString(severity, message)
 	} else {
-		line := fmt.Sprintf("[%d-%02d-%02d %02d:%02d:%02d] [%s] %s\n", year, int(month), day, hour, minute, second, SeverityName[severity], message)
+		line := fmt.Sprintf("[%s] %s\n", SeverityName[severity], message)
 		if _globals.outFd != nil {
 			_globals.outFd.WriteString(line)
 			_globals.outFd.Sync()
